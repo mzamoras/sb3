@@ -26,6 +26,10 @@
     ],
     "author": "Miguel Zamora",
     "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/mzamoras/sb3.git"
+      },
     "devDependencies": {
     },
     "dependencies": {
