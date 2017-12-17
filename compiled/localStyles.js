@@ -9,11 +9,8 @@ Object.defineProperty(exports, "__esModule", {
  * Author: Miguel Zamora Serrano <mzamoras@backlogics.com>
  * Created: 28 Nov, 2017 | 9:19 PM
  * 
- * This file is part of a package and all the information, intellectual
- * and technical concepts contained here are property of their owners.
- * Any kind of use, reproduction, distribution, publication, etc. without
- * express written permission from CapitalMental && BackLogics Technologies
- * is strictly forbidden.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree
  * 
  * CapitalMental && BackLogics Technologies
  * Copyright 2014-present. | All rights reserved.

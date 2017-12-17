@@ -31,10 +31,10 @@
         "url": "https://github.com/mzamoras/sb3.git"
       },
     "devDependencies": {
+        "react-autobind-helper": "^1.0.0",
+        "react-base-starter-project": "^0.0.2"
     },
     "dependencies": {
-        "react-autobind-helper": "^1.0.0",
-        "react-base-starter-project": "^0.0.2",
         "dom-css": "^2.1.0",
         "raf": "^3.4.0"
     }
