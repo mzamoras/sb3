@@ -16,7 +16,7 @@ import App from '../../App';
 import {Scrollbars as Sb3} from '../../../../compiled';
 import {DomNodeManager} from '../configuration/utilities/tddUtils';
 
-let obs     = 90;
+let obs     = 110;
 let objects = [];
 
 for (let index = 0; index < obs; index++) {
@@ -224,6 +224,131 @@ describe( "<Scrollbar/> No Necessary Tracks", done =>{
     } );
 } );
 
+describe( "<Scrollbar/> Check references existence", () =>{
+
+    const destroyable = false;
+
+    it( "Root element should be returned", () =>{
+        const { node, destroy } = testSetup();
+        
+        let rootEl = null;
+        const wrapper = wrapMount( node, { 
+            refRoot: el =>{ rootEl = el }
+        }, false );
+
+        expect( rootEl.tagName ).toEqual( 'DIV' );
+        
+        if( destroyable ){
+            wrapper.unmount();
+            destroy(true);
+        }
+    } );
+
+    it( "View element should be returned", () =>{
+        const { node, destroy } = testSetup();
+        
+        let viewEl = null;
+        const wrapper = wrapMount( node, { 
+            refView: el =>{ viewEl = el }
+        }, false );
+
+        expect( viewEl.tagName ).toEqual( 'DIV' );
+        
+        if( destroyable ){
+            wrapper.unmount();
+            destroy(true);
+        }
+    } );
+
+    it( "XBar element should be returned", () =>{
+        const { node, destroy } = testSetup();
+        
+        let barEl = null;
+        const wrapper = wrapMount( node, { 
+            refXBar: el =>{ barEl = el }
+        }, false );
+
+        expect( barEl.tagName ).toEqual( 'DIV' );
+        
+        if( destroyable ){
+            wrapper.unmount();
+            destroy(true);
+        }
+    } );
+
+    it( "YBar element should be returned", () =>{
+        const { node, destroy } = testSetup();
+        
+        let barEl = null;
+        const wrapper = wrapMount( node, { 
+            refYBar: el =>{ barEl = el }
+        }, false );
+
+        expect( barEl.tagName ).toEqual( 'DIV' );
+        
+        if( destroyable ){
+            wrapper.unmount();
+            destroy(true);
+        }
+    } );
+
+    it( "XThumb element should be returned", () =>{
+        const { node, destroy } = testSetup();
+        
+        let thumbEl = null;
+        const wrapper = wrapMount( node, { 
+            refXThumb: el =>{ thumbEl = el }
+        }, false );
+
+        expect( thumbEl.tagName ).toEqual( 'DIV' );
+        
+        if( destroyable ){
+            wrapper.unmount();
+            destroy(true);
+        }
+    } );
+
+    it( "YThumb element should be returned", () =>{
+        const { node, destroy } = testSetup();
+        
+        let thumbEl = null;
+        const wrapper = wrapMount( node, { 
+            refYThumb: el =>{ thumbEl = el }
+        }, false );
+
+        expect( thumbEl.tagName ).toEqual( 'DIV' );
+        
+        if( destroyable ){
+            wrapper.unmount();
+            destroy(true);
+        }
+    } );
+
+    it( "All elements should be returned", () =>{
+        const { node, destroy } = testSetup();
+        
+        let allElements = null;
+        let root = null;
+        const wrapper = wrapMount( node, { 
+            refAll: el =>{ allElements = el }
+        }, false );
+
+        expect( allElements.root.tagName ).toEqual( 'DIV' );
+        expect( allElements.view.tagName ).toEqual( 'DIV' );
+        expect( allElements.xBar.tagName ).toEqual( 'DIV' );
+        expect( allElements.yBar.tagName ).toEqual( 'DIV' );
+        expect( allElements.xThumb.tagName ).toEqual( 'DIV' );
+        expect( allElements.yThumb.tagName ).toEqual( 'DIV' );
+        
+        if( destroyable ){
+            wrapper.unmount();
+            destroy(true);
+        }
+
+    } );
+
+} )
+
 describe( "<Scrollbar/> Vertical Bar Required", ()=>{
 
     const destroyable = false;
@@ -336,7 +461,7 @@ describe( "<Scrollbar/> Vertical Bar Required", ()=>{
 
     } );
 
-    it.only( "yBar should autoHide with 200ms timeout", done =>{
+    it( "yBar should autoHide with 200ms timeout", done =>{
         const { node, destroy } = testSetup();
         
         let   rRef    = null;
@@ -344,7 +469,9 @@ describe( "<Scrollbar/> Vertical Bar Required", ()=>{
         const wrapper = wrapMount( node, { 
             innerRef: el => { rRef = el },
             showX: false,
-            flashTime: 10
+            flashTime: 10,
+            thumbMinSize: 50,
+            //initialFlashDelay: 1000
         }, false, {
             style: {
                 border: "1px solid pink",

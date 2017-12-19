@@ -38,3 +38,4 @@ export function xBar( element, values ){
         ...( !values.xShowable && { display:"none" })
     } );
 }
+

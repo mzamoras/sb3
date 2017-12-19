@@ -109,6 +109,7 @@ var Scrollbar = function (_React$Component) {
             left: false
         };
 
+        _this.fDelay = isNaN(props.initialFlashDelay) ? 0 : props.initialFlashDelay;
         return _this;
     }
 
@@ -164,20 +165,14 @@ var Scrollbar = function (_React$Component) {
     }, {
         key: 'onMouseEnterTrack',
         value: function onMouseEnterTrack() {
-            console.log("HOVERING");
             this.hovering = true;
-
-            //this.autoShowTracks();
             this.autoShowTracks();
         }
     }, {
         key: 'onMouseLeaveTrack',
         value: function onMouseLeaveTrack() {
-            console.log("NOT HOVERING");
             this.hovering = false;
-
             this.autoHideTracks();
-            //this.hideTracks();
         }
     }, {
         key: 'onMouseDownTrackX',
@@ -526,10 +521,15 @@ var Scrollbar = function (_React$Component) {
             this.values = (0, _calculateData2.default)(this.view, this.xBar, this.yBar, this.props);
 
             if (this._autoHide) {
-                var to = (0, _timers.setTimeout)(function () {
-                    _this7.autoHideTracks();
-                    clearTimeout(to);
-                }, this._initialFlashTime());
+                //this.hideTracks();
+                this.flashDelay = (0, _timers.setTimeout)(function () {
+                    _this7.showTracks();
+                    var to = (0, _timers.setTimeout)(function () {
+                        _this7.autoHideTracks();
+                        clearTimeout(to);
+                        clearTimeout(_this7.flashDelay);
+                    }, _this7._initialFlashTime());
+                }, this.props.initialFlashDelay);
             }
 
             this.addListeners();
@@ -537,6 +537,42 @@ var Scrollbar = function (_React$Component) {
             cssStyles.xThumb(this.xThumb, this.values);
             cssStyles.yBar(this.yBar, this.values);
             cssStyles.xBar(this.xBar, this.values);
+
+            //Retrieve references
+            if (this.props.refRoot) {
+                this.props.refRoot(this.root);
+            }
+
+            if (this.props.refView) {
+                this.props.refView(this.view);
+            }
+
+            if (this.props.refXBar) {
+                this.props.refXBar(this.xBar);
+            }
+
+            if (this.props.refYBar) {
+                this.props.refYBar(this.yBar);
+            }
+
+            if (this.props.refXThumb) {
+                this.props.refXThumb(this.xThumb);
+            }
+
+            if (this.props.refYThumb) {
+                this.props.refYThumb(this.yThumb);
+            }
+
+            if (this.props.refAll) {
+                this.props.refAll({
+                    root: this.root,
+                    view: this.view,
+                    xBar: this.xBar,
+                    yBar: this.yBar,
+                    xThumb: this.xThumb,
+                    yThumb: this.yThumb
+                });
+            }
         }
     }, {
         key: 'componentWillUnmount',
@@ -562,10 +598,14 @@ var Scrollbar = function (_React$Component) {
 
             var _rootCss = (0, _classnames2.default)(root, this.props.elementClasses.root || null);
             var _viewCss = (0, _classnames2.default)(viewContainer, this.props.elementClasses.view || null);
-            var _yBarCss = (0, _classnames2.default)(yBar, this.props.elementClasses.yBar || null);
-            var _xBarCss = (0, _classnames2.default)(xBar, this.props.elementClasses.xBar || null);
             var _yThumbCss = (0, _classnames2.default)(yThumb, this.props.elementClasses.yThumb || null);
             var _xThumbCss = (0, _classnames2.default)(xThumb, this.props.elementClasses.xThumb || null);
+            var _yBarCss = (0, _classnames2.default)(yBar, this.props.elementClasses.yBar || null, {
+                autoHiding: this.fDelay > 0
+            });
+            var _xBarCss = (0, _classnames2.default)(xBar, this.props.elementClasses.xBar || null, {
+                autoHiding: this.fDelay > 0
+            });
 
             //Styles
             var viewStyle = _extends({
@@ -618,7 +658,10 @@ Scrollbar.defaultProps = {
     elementClasses: {},
     autoHide: true,
     showX: true,
-    showY: true
+    showY: true,
+    thumbMinSize: 30,
+
+    initialFlashDelay: 0
 };
 Scrollbar.propTypes = {
 
@@ -634,6 +677,8 @@ Scrollbar.propTypes = {
 
     /** Styling */
     initialFlashTime: _propTypes2.default.number,
+    initialFlashDelay: _propTypes2.default.number,
+    thumbMinSize: _propTypes2.default.number,
 
     autoHide: _propTypes2.default.bool,
     flashTime: _propTypes2.default.number,
@@ -641,6 +686,15 @@ Scrollbar.propTypes = {
     showY: _propTypes2.default.bool,
 
     /** elementClasses */
-    elementClasses: _propTypes2.default.object
+    elementClasses: _propTypes2.default.object,
+
+    /** element reference */
+    refRoot: _propTypes2.default.func,
+    refView: _propTypes2.default.func,
+    refXBar: _propTypes2.default.func,
+    refYBar: _propTypes2.default.func,
+    refXThumb: _propTypes2.default.func,
+    refYThumb: _propTypes2.default.func,
+    refAll: _propTypes2.default.func
 };
 exports.default = (0, _withStyles2.default)(_localStyles.scrollbarsStyle)(Scrollbar);

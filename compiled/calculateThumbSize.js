@@ -27,8 +27,6 @@ function thumbSize(axis, dataSource, props) {
   var contentRatio = windowSize / contentSize;
 
   var size = trackSize * contentRatio;
-  var minSize = props.thumbMinSize;
-  var finalSize = minSize > size ? minSize : size;
-
-  return finalSize - dataSource.barWidth / 2 + 2;
+  var minSize = props.thumbMinSize || 0;
+  return Math.max(minSize, size);
 }
