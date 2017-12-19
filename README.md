@@ -88,8 +88,6 @@ Its the horizontal thumb
 ### yThumb
 Its the vertical thumb 
 
-___
-
 ## Styling Internal Elements
 
 Example:
