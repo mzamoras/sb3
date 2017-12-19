@@ -1,9 +1,8 @@
 # React SB3
 
 ## Component PropTypes
-___
 
-###Styling Properties
+### Styling Properties
 
 | Property | Description | Kind | Default |
 | --- | --- | --- | --- |
@@ -70,7 +69,6 @@ ___
 
 
 ## Internal Elements of the Component
-___
 
 ### Root
 Its the component wrapper.
@@ -93,7 +91,7 @@ Its the vertical thumb
 ___
 
 ## Styling Internal Elements
-___
+
 Example:
 2 Files, 1 Component, 1 Less Style Sheet
 
