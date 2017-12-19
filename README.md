@@ -1,19 +1,32 @@
 # React SB3
 
+## Usage:
+
+Install Using:
+
+```
+// With NPM
+npm add react-sb3
+
+// With Yarn
+yarn add react-sb3
+```
+
+
 ## Component PropTypes
 
 ### Styling Properties
 
 | Property | Description | Kind | Default |
 | --- | --- | --- | --- |
-| autoHide | Enables the autoHiding function for the scrollbars | Bool | False  |
-| showX | Enables the Horizontal scrollbar | Bool | true |
-| showY | Enables the Vertical scrollbar | Bool | true |
-| flashTime | Indicates the time ( in microseconds ) the scrollbars will be visible after a scroll movement, before auto hiding. **Needs autohide enabled** | Number | 500 |
-| InitialFlashTime | The time ( in microseconds ) the scrollbars will be visible after mount, to indicate the existence of scrollbars | Number | 0 |
-| initialFlashDelay | Indicates the time ( in microseconds ) before the autoFlash starts | Number | 0 |
-| thumbMinSize | The minimum size ( in pixels ) of both thumbs | Number | 30 |
-| elementClasses | The css classes to be passed to internal elements **See element Classes for details** | Object | {} |
+| autoHide | Enables the autoHiding function for the scrollbars | bool | False  |
+| showX | Enables the Horizontal scrollbar | bool | true |
+| showY | Enables the Vertical scrollbar | bool | true |
+| flashTime | Indicates the time ( in microseconds ) the scrollbars will be visible after a scroll movement, before auto hiding. **Needs autohide enabled** | number | 500 |
+| InitialFlashTime | The time ( in microseconds ) the scrollbars will be visible after mount, to indicate the existence of scrollbars | number | 0 |
+| initialFlashDelay | Indicates the time ( in microseconds ) before the autoFlash starts | number | 0 |
+| thumbMinSize | The minimum size ( in pixels ) of both thumbs | number | 30 |
+| elementClasses | The css classes to be passed to internal elements **See element Classes for details** | object | {} |
 
 ### Events
 
