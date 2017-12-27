@@ -411,7 +411,10 @@ class Scrollbar extends React.Component{
         cssStyles.xThumb( this.xThumb, this.values );
         cssStyles.yBar( this.yBar, this.values );
         cssStyles.xBar( this.xBar, this.values );
-        callback( this.values );
+
+        if( callback !== null ){
+            callback( this.values );
+        }
     }
 
     /* *********************************
@@ -477,6 +480,10 @@ class Scrollbar extends React.Component{
             } );
         }
         
+    }
+
+    componentDidUpdate(){
+        this.rafUpdate(null);
     }
 
     componentWillUnmount(){
