@@ -22,7 +22,8 @@ export function yThumb( element, values ){
 
 export function yBar( element, values ){
     css( element, { 
-        ...( !values.yShowable && { display:"none" })
+        ...( !values.yShowable && { display:"none" }),
+        ...( values.yShowable && { display:"block" })
     } );
 }
 
@@ -35,7 +36,8 @@ export function xThumb( element, values ){
 
 export function xBar( element, values ){
     css( element, { 
-        ...( !values.xShowable && { display:"none" })
+        ...( !values.xShowable && { display:"none" }),
+        ...( values.xShowable && { display:"block" }),
     } );
 }
 

@@ -36,7 +36,7 @@ function yThumb(element, values) {
 };
 
 function yBar(element, values) {
-    (0, _domCss2.default)(element, _extends({}, !values.yShowable && { display: "none" }));
+    (0, _domCss2.default)(element, _extends({}, !values.yShowable && { display: "none" }, values.yShowable && { display: "block" }));
 }
 
 function xThumb(element, values) {
@@ -47,5 +47,5 @@ function xThumb(element, values) {
 };
 
 function xBar(element, values) {
-    (0, _domCss2.default)(element, _extends({}, !values.xShowable && { display: "none" }));
+    (0, _domCss2.default)(element, _extends({}, !values.xShowable && { display: "none" }, values.xShowable && { display: "block" }));
 }

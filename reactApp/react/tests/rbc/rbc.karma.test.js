@@ -226,7 +226,7 @@ describe( "<Scrollbar/> No Necessary Tracks", done =>{
 
 describe( "<Scrollbar/> Check references existence", () =>{
 
-    const destroyable = false;
+    const destroyable = true;
 
     it( "Root element should be returned", () =>{
         const { node, destroy } = testSetup();
@@ -237,11 +237,7 @@ describe( "<Scrollbar/> Check references existence", () =>{
         }, false );
 
         expect( rootEl.tagName ).toEqual( 'DIV' );
-        
-        if( destroyable ){
-            wrapper.unmount();
-            destroy(true);
-        }
+        autoDestroy( destroyable, wrapper, destroy );
     } );
 
     it( "View element should be returned", () =>{
@@ -253,11 +249,7 @@ describe( "<Scrollbar/> Check references existence", () =>{
         }, false );
 
         expect( viewEl.tagName ).toEqual( 'DIV' );
-        
-        if( destroyable ){
-            wrapper.unmount();
-            destroy(true);
-        }
+        autoDestroy( destroyable, wrapper, destroy );
     } );
 
     it( "XBar element should be returned", () =>{
@@ -269,11 +261,7 @@ describe( "<Scrollbar/> Check references existence", () =>{
         }, false );
 
         expect( barEl.tagName ).toEqual( 'DIV' );
-        
-        if( destroyable ){
-            wrapper.unmount();
-            destroy(true);
-        }
+        autoDestroy( destroyable, wrapper, destroy );
     } );
 
     it( "YBar element should be returned", () =>{
@@ -285,11 +273,7 @@ describe( "<Scrollbar/> Check references existence", () =>{
         }, false );
 
         expect( barEl.tagName ).toEqual( 'DIV' );
-        
-        if( destroyable ){
-            wrapper.unmount();
-            destroy(true);
-        }
+        autoDestroy( destroyable, wrapper, destroy );
     } );
 
     it( "XThumb element should be returned", () =>{
@@ -301,11 +285,7 @@ describe( "<Scrollbar/> Check references existence", () =>{
         }, false );
 
         expect( thumbEl.tagName ).toEqual( 'DIV' );
-        
-        if( destroyable ){
-            wrapper.unmount();
-            destroy(true);
-        }
+        autoDestroy( destroyable, wrapper, destroy );
     } );
 
     it( "YThumb element should be returned", () =>{
@@ -317,11 +297,7 @@ describe( "<Scrollbar/> Check references existence", () =>{
         }, false );
 
         expect( thumbEl.tagName ).toEqual( 'DIV' );
-        
-        if( destroyable ){
-            wrapper.unmount();
-            destroy(true);
-        }
+        autoDestroy( destroyable, wrapper, destroy );
     } );
 
     it( "All elements should be returned", () =>{
@@ -340,18 +316,14 @@ describe( "<Scrollbar/> Check references existence", () =>{
         expect( allElements.xThumb.tagName ).toEqual( 'DIV' );
         expect( allElements.yThumb.tagName ).toEqual( 'DIV' );
         
-        if( destroyable ){
-            wrapper.unmount();
-            destroy(true);
-        }
-
+        autoDestroy( destroyable, wrapper, destroy );
     } );
 
 } )
 
 describe( "<Scrollbar/> Vertical Bar Required", ()=>{
 
-    const destroyable = false;
+    const destroyable = true;
     
     it( "Should have xBar display = none and yBar display = block", () =>{
         const { node, destroy } = testSetup();
@@ -367,10 +339,7 @@ describe( "<Scrollbar/> Vertical Bar Required", ()=>{
         expect( xBarStyle.display ).toEqual("none");
         expect( yBarStyle.display ).toEqual("block");
 
-        if( destroyable ){
-            wrapper.unmount();
-            destroy(true);
-        }
+        autoDestroy( destroyable, wrapper, destroy );
     } );
 
     it( "Should Call onScroll functions [ Scroll, scrollFrame, Start, End ]", done =>{

@@ -20,10 +20,6 @@ var _reactAutobindHelper = require('react-autobind-helper');
 
 var _reactAutobindHelper2 = _interopRequireDefault(_reactAutobindHelper);
 
-var _domCss = require('dom-css');
-
-var _domCss2 = _interopRequireDefault(_domCss);
-
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
@@ -68,6 +64,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * CapitalMental && BackLogics Technologies
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * Copyright 2014-present. | All rights reserved.
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 */
+
+//import css from 'dom-css';
+
 
 function returnFalse() {
     return false;
@@ -331,11 +330,11 @@ var Scrollbar = function (_React$Component) {
         value: function showTracks() {
             if (this._dontAutoHide()) return;
 
-            if (this.values.yShowable) {
+            if (this.values.yShowable && this.yBar) {
                 this.yBar.classList.remove("autoHiding");
                 this.yBar.classList.add("autoShowing");
             }
-            if (this.values.xShowable) {
+            if (this.values.xShowable && this.xBar) {
                 this.xBar.classList.remove("autoHiding");
                 this.xBar.classList.add("autoShowing");
             }
@@ -345,11 +344,11 @@ var Scrollbar = function (_React$Component) {
         value: function hideTracks() {
             if (this._dontAutoHide()) return;
 
-            if (this.values.yShowable) {
+            if (this.values.yShowable && this.yBar) {
                 this.yBar.classList.remove("autoShowing");
                 this.yBar.classList.add("autoHiding");
             }
-            if (this.values.xShowable) {
+            if (this.values.xShowable && this.xBar) {
                 this.xBar.classList.remove("autoShowing");
                 this.xBar.classList.add("autoHiding");
             }
@@ -505,7 +504,10 @@ var Scrollbar = function (_React$Component) {
             cssStyles.xThumb(this.xThumb, this.values);
             cssStyles.yBar(this.yBar, this.values);
             cssStyles.xBar(this.xBar, this.values);
-            callback(this.values);
+
+            if (callback !== null) {
+                callback(this.values);
+            }
         }
 
         /* *********************************
@@ -575,8 +577,15 @@ var Scrollbar = function (_React$Component) {
             }
         }
     }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate() {
+            this.rafUpdate(null);
+        }
+    }, {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
+            clearInterval(this.detectScrollingInterval);
+            clearInterval(this.flashInterval);
             this.componentMounted = false;
             this.removeListeners();
         }

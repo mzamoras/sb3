@@ -14,7 +14,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import autobind from 'react-autobind-helper';
-import css from 'dom-css';
+//import css from 'dom-css';
 import classNames from 'classnames';
 import withStyles from 'material-ui/styles/withStyles';
 import raf, { cancel as caf } from 'raf';
@@ -261,12 +261,12 @@ class Scrollbar extends React.Component{
 
     showTracks(){
         if( this._dontAutoHide() ) return;
-
-        if( this.values.yShowable ){
+        
+        if( this.values.yShowable && this.yBar){
             this.yBar.classList.remove("autoHiding");
             this.yBar.classList.add("autoShowing");
         }
-        if( this.values.xShowable ){
+        if( this.values.xShowable && this.xBar){
             this.xBar.classList.remove("autoHiding");
             this.xBar.classList.add("autoShowing");
         }
@@ -275,11 +275,11 @@ class Scrollbar extends React.Component{
     hideTracks(){
         if( this._dontAutoHide() ) return;
 
-        if( this.values.yShowable ){
+        if( this.values.yShowable  && this.yBar){
             this.yBar.classList.remove("autoShowing");
             this.yBar.classList.add("autoHiding");
         }
-        if( this.values.xShowable ){
+        if( this.values.xShowable  && this.xBar){
             this.xBar.classList.remove("autoShowing");
             this.xBar.classList.add("autoHiding");
         }
@@ -487,6 +487,8 @@ class Scrollbar extends React.Component{
     }
 
     componentWillUnmount(){
+        clearInterval( this.detectScrollingInterval );
+        clearInterval( this.flashInterval );
         this.componentMounted = false;
         this.removeListeners();
     }
