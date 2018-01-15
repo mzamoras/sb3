@@ -37,9 +37,9 @@ yarn add react-sb3
 | onScroll | When scrolling |
 | onScrollFrame | When scrolling inside animation frame process |
 | onTopReached | When top position is reached, won't trigger initially |
-| OnLeftReached | When left position is reached, won't trigger initially |
-| OnBottomReached | When bottom position is reached |
-| OnRightReached | When right position is reached |
+| onLeftReached | When left position is reached, won't trigger initially |
+| onBottomReached | When bottom position is reached |
+| onRightReached | When right position is reached |
 
 ### References
 
