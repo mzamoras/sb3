@@ -495,53 +495,17 @@ class Scrollbar extends React.Component{
 
     render(){
 
-        const {
-            /** Events */
-            onScrollStart,
-            onScrollEnd,
-            onScroll,
-            onScrollFrame,
-            onTopReached,
-            onBottomReached,
-            onLeftReached,
-            onRightReached,
-            /** Styling */
-            initialFlashTime,
-            initialFlashDelay,
-            thumbMinSize,
-            /** Hiding Props */
-            autoHide,
-            flashTime,
-            showX,
-            showY,
-            /** elementClasses */
-            elementClasses,
-            classes,
-            /** element reference */
-            refRoot,
-            refView,
-            refXBar,
-            refYBar,
-            refXThumb,
-            refYThumb,
-            refAll,
-            //Children
-            children,
-            //Others
-            ...allOther
-        } = this.props;
-
-        const { root, container, xBar, yBar, viewContainer, xThumb, yThumb } = classes;
+        const { root, container, xBar, yBar, viewContainer, xThumb, yThumb } = this.props.classes;
 
         // CSS Classes
-        const _rootCss   = classNames( root, elementClasses.root || null );
-        const _viewCss   = classNames( viewContainer, elementClasses.view || null );
-        const _yThumbCss = classNames( yThumb, elementClasses.yThumb || null );
-        const _xThumbCss = classNames( xThumb, elementClasses.xThumb || null );
-        const _yBarCss   = classNames( yBar, elementClasses.yBar || null, {
+        const _rootCss   = classNames( root, this.props.elementClasses.root || null );
+        const _viewCss   = classNames( viewContainer, this.props.elementClasses.view || null );
+        const _yThumbCss = classNames( yThumb, this.props.elementClasses.yThumb || null );
+        const _xThumbCss = classNames( xThumb, this.props.elementClasses.xThumb || null );
+        const _yBarCss   = classNames( yBar, this.props.elementClasses.yBar || null, {
             autoHiding: this.fDelay > 0
         } );
-        const _xBarCss   = classNames( xBar, elementClasses.xBar || null, {
+        const _xBarCss   = classNames( xBar, this.props.elementClasses.xBar || null, {
             autoHiding: this.fDelay > 0
         } );
 
@@ -549,17 +513,17 @@ class Scrollbar extends React.Component{
         const viewStyle = {
             marginRight : -( window.sb2GlobalData.scrollbarWidth ) || 0,
             marginBottom: -( window.sb2GlobalData.scrollbarWidth ) || 0,
-            ...( !showX && { overflowX: 'hidden' } ), 
-            ...( !showY && { overflowY: 'hidden' } ) 
+            ...( !this.props.showX && { overflowX: 'hidden' } ), 
+            ...( !this.props.showY && { overflowY: 'hidden' } ) 
         };
 
-        const xBarStyle = { ...( !showX && { display:'none' } ) };
-        const yBarStyle = { ...( !showY && { display:'none' } ) };
+        const xBarStyle = { ...( !this.props.showX && { display:'none' } ) };
+        const yBarStyle = { ...( !this.props.showY && { display:'none' } ) };
 
         return(
-            <div className={ _rootCss } ref={ e => { this.root = e } } {...allOther}>     
+            <div className={ _rootCss } ref={ e => { this.root = e } }>     
                 <div className={_viewCss} style={viewStyle} ref={ e => { this.view = e } }>
-                    {children}
+                    {this.props.children}
                 </div>
                 <div className={_yBarCss} ref={ e => { this.yBar = e } } style={ yBarStyle }>
                     <div className={_yThumbCss} ref={ e => { this.yThumb = e } }/>
@@ -595,11 +559,11 @@ class Scrollbar extends React.Component{
         onRightReached : PropTypes.func,
 
         /** Styling */
-        initialFlashTime : PropTypes.number,
+        initialFlashTime: PropTypes.number,
         initialFlashDelay: PropTypes.number,
-        thumbMinSize     : PropTypes.number,
+        thumbMinSize: PropTypes.number,
         
-        /** Hiding Props */
+
         autoHide : PropTypes.bool,
         flashTime: PropTypes.number,
         showX    : PropTypes.bool,
@@ -610,13 +574,13 @@ class Scrollbar extends React.Component{
         elementClasses: PropTypes.object,
 
         /** element reference */
-        refRoot  : PropTypes.func,
-        refView  : PropTypes.func,
-        refXBar  : PropTypes.func,
-        refYBar  : PropTypes.func,
+        refRoot: PropTypes.func,
+        refView: PropTypes.func,
+        refXBar: PropTypes.func,
+        refYBar: PropTypes.func,
         refXThumb: PropTypes.func,
         refYThumb: PropTypes.func,
-        refAll   : PropTypes.func
+        refAll: PropTypes.func
     };
 }
 export default withStyles( scrollbarsStyle )( Scrollbar );

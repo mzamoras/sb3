@@ -711,16 +711,6 @@ describe('External classes applied', ()=>{
 });
 
 describe.only( "Extra props should be applied to the root element", ( )=>{
-
-    const destroyable = true;
-    const commonProps = {
-        autoHide: false,
-        showY: false
-    };
-    const wrapperStyle = {
-        width: "200%"
-    };
-
     it( "Should Apply id attribute to the root element", ( )=>{
         const { node, destroy } = testSetup();
             
@@ -736,9 +726,7 @@ describe.only( "Extra props should be applied to the root element", ( )=>{
                 style: wrapperStyle
             } );
 
-            const elem = document.getElementById("some_id") ;
-            expect( elem ).toBeTruthy;
-            expect( elem.id ).toBe("some_id");
+            expect( document.getElementById("some_id") ).toBeTruthy;
     });
 });
 

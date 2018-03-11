@@ -494,7 +494,7 @@ class Scrollbar extends React.Component{
     }
 
     render(){
-
+        
         const {
             /** Events */
             onScrollStart,
@@ -506,7 +506,7 @@ class Scrollbar extends React.Component{
             onLeftReached,
             onRightReached,
             /** Styling */
-            initialFlashTime,
+            initialFlashTime ,
             initialFlashDelay,
             thumbMinSize,
             /** Hiding Props */
@@ -525,9 +525,6 @@ class Scrollbar extends React.Component{
             refXThumb,
             refYThumb,
             refAll,
-            //Children
-            children,
-            //Others
             ...allOther
         } = this.props;
 

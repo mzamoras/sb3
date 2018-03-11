@@ -48,6 +48,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -594,25 +596,52 @@ var Scrollbar = function (_React$Component) {
         value: function render() {
             var _this8 = this;
 
-            var _props$classes = this.props.classes,
-                root = _props$classes.root,
-                container = _props$classes.container,
-                xBar = _props$classes.xBar,
-                yBar = _props$classes.yBar,
-                viewContainer = _props$classes.viewContainer,
-                xThumb = _props$classes.xThumb,
-                yThumb = _props$classes.yThumb;
+            var _props = this.props,
+                onScrollStart = _props.onScrollStart,
+                onScrollEnd = _props.onScrollEnd,
+                onScroll = _props.onScroll,
+                onScrollFrame = _props.onScrollFrame,
+                onTopReached = _props.onTopReached,
+                onBottomReached = _props.onBottomReached,
+                onLeftReached = _props.onLeftReached,
+                onRightReached = _props.onRightReached,
+                initialFlashTime = _props.initialFlashTime,
+                initialFlashDelay = _props.initialFlashDelay,
+                thumbMinSize = _props.thumbMinSize,
+                autoHide = _props.autoHide,
+                flashTime = _props.flashTime,
+                showX = _props.showX,
+                showY = _props.showY,
+                elementClasses = _props.elementClasses,
+                classes = _props.classes,
+                refRoot = _props.refRoot,
+                refView = _props.refView,
+                refXBar = _props.refXBar,
+                refYBar = _props.refYBar,
+                refXThumb = _props.refXThumb,
+                refYThumb = _props.refYThumb,
+                refAll = _props.refAll,
+                children = _props.children,
+                allOther = _objectWithoutProperties(_props, ['onScrollStart', 'onScrollEnd', 'onScroll', 'onScrollFrame', 'onTopReached', 'onBottomReached', 'onLeftReached', 'onRightReached', 'initialFlashTime', 'initialFlashDelay', 'thumbMinSize', 'autoHide', 'flashTime', 'showX', 'showY', 'elementClasses', 'classes', 'refRoot', 'refView', 'refXBar', 'refYBar', 'refXThumb', 'refYThumb', 'refAll', 'children']);
+
+            var root = classes.root,
+                container = classes.container,
+                xBar = classes.xBar,
+                yBar = classes.yBar,
+                viewContainer = classes.viewContainer,
+                xThumb = classes.xThumb,
+                yThumb = classes.yThumb;
 
             // CSS Classes
 
-            var _rootCss = (0, _classnames2.default)(root, this.props.elementClasses.root || null);
-            var _viewCss = (0, _classnames2.default)(viewContainer, this.props.elementClasses.view || null);
-            var _yThumbCss = (0, _classnames2.default)(yThumb, this.props.elementClasses.yThumb || null);
-            var _xThumbCss = (0, _classnames2.default)(xThumb, this.props.elementClasses.xThumb || null);
-            var _yBarCss = (0, _classnames2.default)(yBar, this.props.elementClasses.yBar || null, {
+            var _rootCss = (0, _classnames2.default)(root, elementClasses.root || null);
+            var _viewCss = (0, _classnames2.default)(viewContainer, elementClasses.view || null);
+            var _yThumbCss = (0, _classnames2.default)(yThumb, elementClasses.yThumb || null);
+            var _xThumbCss = (0, _classnames2.default)(xThumb, elementClasses.xThumb || null);
+            var _yBarCss = (0, _classnames2.default)(yBar, elementClasses.yBar || null, {
                 autoHiding: this.fDelay > 0
             });
-            var _xBarCss = (0, _classnames2.default)(xBar, this.props.elementClasses.xBar || null, {
+            var _xBarCss = (0, _classnames2.default)(xBar, elementClasses.xBar || null, {
                 autoHiding: this.fDelay > 0
             });
 
@@ -620,22 +649,22 @@ var Scrollbar = function (_React$Component) {
             var viewStyle = _extends({
                 marginRight: -window.sb2GlobalData.scrollbarWidth || 0,
                 marginBottom: -window.sb2GlobalData.scrollbarWidth || 0
-            }, !this.props.showX && { overflowX: 'hidden' }, !this.props.showY && { overflowY: 'hidden' });
+            }, !showX && { overflowX: 'hidden' }, !showY && { overflowY: 'hidden' });
 
-            var xBarStyle = _extends({}, !this.props.showX && { display: 'none' });
-            var yBarStyle = _extends({}, !this.props.showY && { display: 'none' });
+            var xBarStyle = _extends({}, !showX && { display: 'none' });
+            var yBarStyle = _extends({}, !showY && { display: 'none' });
 
             return _react2.default.createElement(
                 'div',
-                { className: _rootCss, ref: function ref(e) {
+                _extends({ className: _rootCss, ref: function ref(e) {
                         _this8.root = e;
-                    } },
+                    } }, allOther),
                 _react2.default.createElement(
                     'div',
                     { className: _viewCss, style: viewStyle, ref: function ref(e) {
                             _this8.view = e;
                         } },
-                    this.props.children
+                    children
                 ),
                 _react2.default.createElement(
                     'div',
@@ -689,6 +718,7 @@ Scrollbar.propTypes = {
     initialFlashDelay: _propTypes2.default.number,
     thumbMinSize: _propTypes2.default.number,
 
+    /** Hiding Props */
     autoHide: _propTypes2.default.bool,
     flashTime: _propTypes2.default.number,
     showX: _propTypes2.default.bool,

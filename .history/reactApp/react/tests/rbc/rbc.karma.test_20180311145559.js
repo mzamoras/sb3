@@ -736,9 +736,7 @@ describe.only( "Extra props should be applied to the root element", ( )=>{
                 style: wrapperStyle
             } );
 
-            const elem = document.getElementById("some_id") ;
-            expect( elem ).toBeTruthy;
-            expect( elem.id ).toBe("some_id");
+            expect( document.getElementById("some_id") ).toBeTruthy;
     });
 });
 

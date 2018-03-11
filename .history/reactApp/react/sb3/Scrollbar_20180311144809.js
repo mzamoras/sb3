@@ -525,9 +525,6 @@ class Scrollbar extends React.Component{
             refXThumb,
             refYThumb,
             refAll,
-            //Children
-            children,
-            //Others
             ...allOther
         } = this.props;
 

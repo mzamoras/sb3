@@ -710,38 +710,6 @@ describe('External classes applied', ()=>{
     });
 });
 
-describe.only( "Extra props should be applied to the root element", ( )=>{
-
-    const destroyable = true;
-    const commonProps = {
-        autoHide: false,
-        showY: false
-    };
-    const wrapperStyle = {
-        width: "200%"
-    };
-
-    it( "Should Apply id attribute to the root element", ( )=>{
-        const { node, destroy } = testSetup();
-            
-            let   rRef    = null;
-            
-            const wrapper = wrapMount( node, { 
-                innerRef: el => { rRef = el },
-                ...commonProps,
-                flashTime: 10,
-                autoHide: false,
-                id: "some_id"
-            }, false, {
-                style: wrapperStyle
-            } );
-
-            const elem = document.getElementById("some_id") ;
-            expect( elem ).toBeTruthy;
-            expect( elem.id ).toBe("some_id");
-    });
-});
-
 describe( "Scrollbar", ()=>{
 
     /* it( "No Tracks because not necessary.", done =>{
