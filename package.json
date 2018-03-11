@@ -1,6 +1,6 @@
 {
     "name": "react-sb3",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "description": "React Customizable and auto hidable Scrollbars Component based on malte-wessel work",
     "main": "compiled/index.js",
     "scripts": {
