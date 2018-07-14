@@ -16,7 +16,7 @@ import PropTypes from 'prop-types';
 import autobind from 'react-autobind-helper';
 //import css from 'dom-css';
 import classNames from 'classnames';
-import withStyles from 'material-ui/styles/withStyles';
+import withStyles from '@material-ui/core/styles/withStyles';
 import raf, { cancel as caf } from 'raf';
 
 

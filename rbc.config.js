@@ -80,7 +80,7 @@ module.exports = function( isProductionEnvironment, isHotModuleReloadEnabled ){
 
         output:{
             filename     : "js/[name].js",
-            chunkFilename: "js/zyx[chunkhash].js",
+            chunkFilename: "js/[name].js",
         },
 
         resolve:{
@@ -97,6 +97,17 @@ module.exports = function( isProductionEnvironment, isHotModuleReloadEnabled ){
         }
 
     };
+
+    config.storyBook = {
+        path: path.join( mainFolder, 'storybook' ),
+        port: 9001
+    }
+
+    config.tests = {
+        path: path.join( mainFolder, 'react/tests' ),
+        karmaIndex: path.join( mainFolder, 'react/tests/configuration/karma.index.js' ),
+        jestIndex: path.join( mainFolder, 'react/tests/configuration/jest.index.js' ),
+    }
 
     return config;
 }

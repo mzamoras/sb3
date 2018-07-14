@@ -1,12 +1,17 @@
 {
-  "app.css": "css/app.css",
-  "app.css.map": "css/app.css.map",
-  "app.js": "js/app.js",
-  "app.js.map": "js/app.js.map",
-  "base.css": "css/base.css",
-  "base.css.map": "css/base.css.map",
-  "base.js": "js/base.js",
-  "base.js.map": "js/base.js.map",
-  "boot.js": "js/boot.js",
-  "boot.js.map": "js/boot.js.map"
+  "app.js": "http://localhost:5500/js/app.js",
+  "app.css": "http://localhost:5500/css/app.css",
+  "app.js.map": "http://localhost:5500/js/app.js.map",
+  "app.css.map": "http://localhost:5500/css/app.css.map",
+  "base.js": "http://localhost:5500/js/base.js",
+  "base.css": "http://localhost:5500/css/base.css",
+  "base.js.map": "http://localhost:5500/js/base.js.map",
+  "base.css.map": "http://localhost:5500/css/base.css.map",
+  "boot.js": "http://localhost:5500/js/boot.js",
+  "boot.js.map": "http://localhost:5500/js/boot.js.map",
+  "js/boot.js.gz": "http://localhost:5500/js/boot.js.gz",
+  "css/app.css.gz": "http://localhost:5500/css/app.css.gz",
+  "css/base.css.gz": "http://localhost:5500/css/base.css.gz",
+  "js/base.js.gz": "http://localhost:5500/js/base.js.gz",
+  "js/app.js.gz": "http://localhost:5500/js/app.js.gz"
 }
